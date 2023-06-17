@@ -31,6 +31,24 @@ function playSound() {
   }
 };
 
+function updateText() {
+    var text = textEntry.value.trim();
+
+    if (text !== '') {
+      if (paragraph.textContent.trim() === textInit) {
+        paragraph.textContent = '';
+      }
+
+
+      var newLine = document.createElement('br');
+      var textNode = document.createTextNode(text);
+      paragraph.appendChild(textNode);
+      paragraph.appendChild(newLine);
+      textEntry.value = '';
+      paragraph.scrollTop = paragraph.scrollHeight;
+    }
+}
+
 imageContainer.addEventListener('mousedown', () => {
   imageContainer.classList.add('clicked');
   playSound()
@@ -53,37 +71,11 @@ imageContainer.addEventListener('mouseup', () => {
 textEntry.addEventListener('keyup', (event) => {
   if (event.key === 'Enter') {
     playSound();
-    var text = textEntry.value.trim();
-
-    if (text !== '') {
-      if (paragraph.textContent.trim() === textInit) {
-        paragraph.textContent = '';
-      }
-
-
-      var newLine = document.createElement('br');
-      var textNode = document.createTextNode(text);
-      paragraph.appendChild(textNode);
-      paragraph.appendChild(newLine);
-      textEntry.value = '';
-    }
+    updateText();
   };
 });
 
 enterButton.addEventListener('mousedown', () => {
   playSound();
-  var text = textEntry.value.trim();
-
-  if (text !== '') {
-    if (paragraph.textContent.trim() === textInit) {
-      paragraph.textContent = '';
-    }
-
-
-    var newLine = document.createElement('br');
-    var textNode = document.createTextNode(text);
-    paragraph.appendChild(textNode);
-    paragraph.appendChild(newLine);
-    textEntry.value = '';
-  }
+  updateText();
 });
