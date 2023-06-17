@@ -48,7 +48,7 @@ function appendMessage(message, userMessage) {
     var quackElement = document.createElement('div')
     quackElement.textContent = "*quack!*"
   
-    if (message !== '') {
+    if (message !== '') 
       if (userMessage) {     
         messageElement.classList.add('user-message')
         messageContainer.appendChild(messageElement);
@@ -61,7 +61,7 @@ function appendMessage(message, userMessage) {
     }
     
     messageContainer.scrollTop = messageContainer.scrollHeight;   
-  }
+  
 }
 
 imageContainer.addEventListener('mousedown', () => {
@@ -85,12 +85,16 @@ imageContainer.addEventListener('mouseup', () => {
 
 textEntry.addEventListener('keyup', (event) => {
   if (event.key === 'Enter') {
-    appendMessage(textEntry.value.trim(), true)
-    sleep(2000).then(() => { appendMessage("*quack!*", false) });
+    if (textEntry.value !== '') {
+      appendMessage(textEntry.value.trim(), true)
+      sleep(500).then(() => { appendMessage("*quack!*", false) });
+    }
   }
 })
 
 enterButton.addEventListener('mousedown', () => {
-  appendMessage(textEntry.value.trim(), true)
-  sleep(500).then(() => { appendMessage("*quack!*", false) });
+  if (textEntry.value !== '') {
+    appendMessage(textEntry.value.trim(), true)
+    sleep(500).then(() => { appendMessage("*quack!*", false) });
+  }
 })

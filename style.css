@@ -1,4 +1,12 @@
- body {
+html {
+  width: 100%;
+  height: 75%%;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+body {
     background-color: #f2f2f2;
     display: flex;
     justify-content: center;
@@ -23,7 +31,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 95%;
+  width: 50%;
 }
+
 
 .image-container {
   border-radius: 50%;
@@ -55,15 +66,17 @@
   margin-top: 40px;
   margin-bottom: 0px;
   width: 310px;
-  height: 300px;
+  height: 50%;
   overflow-y: scroll;
   word-wrap: break-word;
   font-size: 16px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: flex-end;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  scroll-behavior: smooth; /* Add smooth scrolling behavior */
 }
 
 .message-container::-webkit-scrollbar{
@@ -71,7 +84,7 @@
 }
 
 .system-message {
-  background-color: #ed510e;
+  background-color: #ec7d0f;
   color: #ffffff;
   padding: 8px;
   border-radius: 12px;
@@ -91,7 +104,7 @@
 }
 
 .user-message {
-  background-color: #faa301;
+  background-color: #feb52e;
   color: #ffffff;
   padding: 8px;
   border-radius: 12px;
@@ -137,4 +150,64 @@
 
 .enter-button:active {
   background-color: #ef110c !important;
+}
+
+@media only screen and (max-width: 700px) {
+
+  html {
+    width: 100%;
+    height: 100%;
+  }
+  
+  body {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .container {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    justify-content: top;
+  }
+
+  .image-container {
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 100px;
+    width: 100px;
+  }
+  
+  .message-container {
+    width: 100%;
+    min-height: 70%;
+    max-height: 70%;
+    padding: 5%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .form-group {
+    bottom: 5px;
+    left: 5px;
+    width: 100%;
+  }
+
+  .input-group {
+    width: 100%;
+  }
+
+  .text-entry {
+    margin-left: 20px;
+    width: 70%;
+    height: 10%;
+  }
+
+  .enter-button {
+    border: 1px solid #ec7d0f;
+    margin-right: 20px;
+    width: 20%;
+    height: 10%;
+  }
 }
