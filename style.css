@@ -6,15 +6,23 @@
     height: 100vh;
 }
 
+*:focus {
+  box-shadow: none !important;
+}
+
 .volume-icon {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 15px;
+  left: 15px;
   cursor: pointer;
 }
 
+
 .container {
-  text-align: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .image-container {
@@ -25,8 +33,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 310px;
-  height: 310px;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto; /* Added to horizontally center the image container */
 }
 
 .image {
@@ -41,38 +50,85 @@
   transform: scale(1);
 }
 
-.paragraph {
+.message-container {
   text-align: center;
-  margin-top: 20px;
-  margin-bottom: 5px;
+  margin-top: 40px;
+  margin-bottom: 0px;
   width: 310px;
-  height: 145px;
+  height: 300px;
   overflow-y: scroll;
   word-wrap: break-word;
   font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.system-message {
+  background-color: #ed510e;
+  color: #ffffff;
+  padding: 8px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  width: 100%;
+  align-self: flex-start;
+}
+
+.chat-message {
+  background-color: #ed510e;
+  color: #ffffff;
+  padding: 8px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  max-width: 80%;
+  align-self: flex-start;
+}
+
+.user-message {
+  background-color: #faa301;
+  color: #ffffff;
+  padding: 8px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  max-width: 80%;
+  align-self: flex-end;
+}
+
+.input-group {
+  width: 310px;
+  display: flex;
+  align-items: center;
 }
 
 .text-entry {
-  margin-top: 10px;
+  margin-top: 0px;
   font-size: 14px;
+  width: 80%;
+  height: 38px;
+  border-radius: 4px 0px 0px 4px;
+}
+
+.text-entry:focus {
+  border: 1px solid #ec7d0f;
 }
 
 .enter-button {
-  margin-top: 5px;
+  margin-top: 0px;
   font-size: 14px;
   font-weight: bold;
-  width: 100%;
+  width: 20%;
   background-color: #ec7d0f;
-  border: 0px;
+  border: 2px;
+  border-radius: 0px 4px 4px 0px;
+  border-color: steel;
+  height: 38px;
+  margin-left: 0px;
 }
 
 .enter-button:hover {
   background-color: #ed510e;
 }
 
-.enter-button:active:focus {
+.enter-button:active {
   background-color: #ef110c !important;
-  outline: none !important;
-  box-shadow: none !important;
-  border: none !important;
 }
