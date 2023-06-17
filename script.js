@@ -92,5 +92,5 @@ textEntry.addEventListener('keyup', (event) => {
 
 enterButton.addEventListener('mousedown', () => {
   appendMessage(textEntry.value.trim(), true)
-  sleep(2000).then(() => { appendMessage("*quack!*", false) });
+  sleep(500).then(() => { appendMessage("*quack!*", false) });
 })
