@@ -243,7 +243,9 @@ body {
     margin-top: auto;
     margin-bottom: auto;
     height: 100px;
+	min-height: 100px;
     width: 100px;
+	min-width: 100px;
   }
 
   .message-container {
@@ -279,62 +281,6 @@ body {
 
   .enter-button {
     border: none;
-    margin-right: 20px;
-    width: 20%;
-    height: 38px;
-  }
-}
-
-@media only screen and (max-height: 700px) {
- 
- .container {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    justify-content: top;
-  }
-
-  .image-container {
-    margin-top: auto;
-    margin-bottom: auto;
-    height: 100px;
-    width: 100px;
-  }
-
-  .message-container {
-    width: 100%;
-    min-height: 50%;
-    max-height: 50%;
-    padding: 5%;
-	padding-bottom: 0px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-
-.activity-message {
-	margin-left: 20px;
-	margin-bottom: 5px;
-}
-
-  .form-group {
-    bottom: 5px;
-    left: 5px;
-    width: 100%;
-  }
-
-  .input-group {
-    width: 100%;
-  }
-
-  .text-entry {
-    margin-left: 20px;
-    width: 70%;
-    height: 38px;
-  }
-
-  .enter-button {
-    border:none;
     margin-right: 20px;
     width: 20%;
     height: 38px;
