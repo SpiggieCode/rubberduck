@@ -108,14 +108,12 @@ function makeRequest() {
 		ActivityMessage.classList.toggle("is-visible");
         appendMessage(responseText, false);
       } else {
-		ActivityMessage.classList.toggle("is-visible");
         appendMessage("It looks like smart duck isn't working right now, quack!", false);
         
       }
     })
     .catch(error => {
       console.log("Error:", error);
-	  ActivityMessage.classList.toggle("is-visible");
 	  appendMessage("Either OpenAI is down or something is wrong with your key.🦆", false);
     });
 }
@@ -151,6 +149,7 @@ function appendMessage(message, userMessage) {
       playSound("bloop");
       textEntry.value = '';
     } else {
+	  ActivityMessage.classList.toggle("is-visible");
       messageElement.classList.add('chat-message');
       messageContainer.appendChild(messageElement);
       playSound("squeak");
