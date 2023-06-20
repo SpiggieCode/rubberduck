@@ -3,6 +3,7 @@ const messageContainer = document.querySelector('.message-container');
 const textEntry = document.querySelector('.text-entry');
 const textInit = messageContainer.textContent.trim();
 const enterButton = document.querySelector('.enter-button');
+const activityMessage = document.querySelector('.activity-message');
 
 const apiKeyInput = document.getElementById("api-key-input");
 const apiToggle = document.getElementById("api-toggle");
@@ -71,6 +72,8 @@ const getLastMessages = () => {
 function makeRequest() {
   const apiKey = apiKeyInput.value;
   if (!apiKey) {
+	sleep(500);
+	activityMessage.classList.toggle("is-visible");
     appendMessage("*quack!*", false);
     return;
   }
@@ -102,6 +105,7 @@ function makeRequest() {
       console.log(data);
       if (data.choices && data.choices.length > 0) {
         const responseText = data.choices[0].text.trim();
+		activityMessage.classList.toggle("is-visible")
         appendMessage(responseText, false);
       } else {
         appendMessage("It looks like smart duck isn't working right now, quack!", false);
@@ -151,7 +155,7 @@ function appendMessage(message, userMessage) {
     }
   }
 
-  messageContainer.scrollTop = messageContainer.scrollHeight;
+  //messageContainer.scrollTop = messageContainer.scrollHeight;
 }
 
 // Functions that handle playing the rubber duck sound when clicking on the image
@@ -173,6 +177,7 @@ imageContainer.addEventListener('mouseup', () => {
 function handleTextEntry() {
   if (textEntry.value !== '') {
     appendMessage(textEntry.value.trim(), true);
+	activityMessage.classList.toggle("is-visible")
     sleep(500).then(() => {
       makeRequest();
     });

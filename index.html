@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <title>Rubber Duck</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
   <link rel="icon" type="image/x-icon" href="icon.png">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="style.css">
@@ -32,7 +33,11 @@
     </div>
 
     <div class="form-group">
+	  <div class="activity-message">
+		<p>Duck is typing...</p>
+	  </div>
       <div class="input-group">
+	  
         <input type="text" class="form-control text-entry" placeholder="Enter text" maxlength="160">
         <button class="btn btn-primary enter-button">Go</button>
       </div>
