@@ -107,7 +107,6 @@ function makeRequest() {
         appendMessage(responseText, false);
       } else {
         appendMessage("It looks like smart duck isn't working right now, quack!", false);
-        
       }
     })
     .catch(error => {
@@ -147,7 +146,7 @@ function appendMessage(message, userMessage) {
       playSound("bloop");
       textEntry.value = '';
     } else {
-	  ActivityMessage.classList.toggle("is-visible");
+	  activityMessage.classList.toggle("is-visible");
       messageElement.classList.add('chat-message');
       messageContainer.appendChild(messageElement);
       playSound("squeak");
