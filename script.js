@@ -73,7 +73,6 @@ function makeRequest() {
   const apiKey = apiKeyInput.value;
   if (!apiKey) {
 	sleep(500);
-	activityMessage.classList.toggle("is-visible");
     appendMessage("*quack!*", false);
     return;
   }
