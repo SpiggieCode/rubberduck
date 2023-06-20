@@ -105,11 +105,12 @@ function makeRequest() {
       console.log(data);
       if (data.choices && data.choices.length > 0) {
         const responseText = data.choices[0].text.trim();
-		activityMessage.classList.toggle("is-visible")
+		activityMessage.classList.toggle("is-visible");
         appendMessage(responseText, false);
       } else {
         appendMessage("It looks like smart duck isn't working right now, quack!", false);
         appendMessage("Either OpenAI is down or something is wrong with your key.🦆", false);
+		ActivityMessage.classList.toggle("is-visible");
       }
     })
     .catch(error => {
