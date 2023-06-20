@@ -106,12 +106,12 @@ function makeRequest() {
         const responseText = data.choices[0].text.trim();
         appendMessage(responseText, false);
       } else {
-        appendMessage("It looks like smart duck isn't working right now, quack!", false);
+		appendMessage("Either OpenAI is down or something is wrong with your key.🦆", false);
       }
     })
     .catch(error => {
       console.log("Error:", error);
-	  appendMessage("Either OpenAI is down or something is wrong with your key.🦆", false);
+	  appendMessage("It looks like smart duck isn't working right now, quack!", false);
     });
 }
 
