@@ -1,58 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <title>Rubber Duck</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-  <meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/x-icon" href="icon.png">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/792a11b030.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-
-  <div class="volume-icon">
-    <i id="volume-toggle" class="fas fa-volume-up fa-2x" style="color: #ed510e;"></i>
-  </div>
-  <div class="api-icon">
-    <i id="api-toggle" class="fas fa-microchip fa-2xl" style="color: #ed510e;"></i>
-  </div>
-
-  <div class="container justify-content-center">
-    <div class="image-container">
-      <img class="image" src="duck.png" alt="a photograph of a rubber duck">
+<div class="chat-container">
+  <div class="header">
+    <div class="volume-icon">
+      <i id="volume-toggle" class="fas fa-volume-up fa-2x" style="color: white;"></i>
     </div>
+    <div class="profile-image-container">
+      <img class="profile-image" src="duck.png" alt="a photograph of a rubber duck">
+    </div>
+  </div>
 
+  <div class="chat-box">
     <div class="message-container">
-      <p class="system-message">
-        Talk to the rubber duck.<br>
-        The rubber duck is here for you.
-      </p>
-    </div>
-
-    <div class="form-group">
-	  <div class="activity-message">
-		<p>Duck is typing...</p>
-	  </div>
-      <div class="input-group">
-	  
-        <input type="text" class="form-control text-entry" placeholder="Enter text" maxlength="160">
-        <button class="btn btn-primary enter-button">Go</button>
-      </div>
-      <div class="popout-box" id="popout-box">
-        <p>Enable SmartDuck</p>
-        <input type="text" id="api-key-input" placeholder="OpenAI API Key" maxlength="300">
-        <button id="submit-button">Save</button>
+      <div class="system-message">
+        <p>Talk to the rubber duck. The rubber duck is here for you.</p>
       </div>
     </div>
   </div>
 
-  <script src="https://kit.fontawesome.com/792a11b030.js" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <script src="script.js"></script>
+  <div class="input-area">
+    <div class="activity-message">
+      <p>Duck is typing...</p>
+    </div>
+    <div class="input-group">
+      <input type="text" class="text-entry" placeholder="Enter text" maxlength="160">
+      <button class="enter-button">Go</button>
+    </div>
+  </div>
+</div>
 
+<script src="script.js"></script>
 </body>
 
 </html>

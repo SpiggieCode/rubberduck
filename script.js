@@ -1,21 +1,21 @@
-const imageContainer = document.querySelector('.image-container');
+const imageContainer = document.querySelector('.profile-image-container');
 const messageContainer = document.querySelector('.message-container');
 const textEntry = document.querySelector('.text-entry');
-const textInit = messageContainer.textContent.trim();
 const enterButton = document.querySelector('.enter-button');
 const activityMessage = document.querySelector('.activity-message');
-
-const apiKeyInput = document.getElementById("api-key-input");
-const apiToggle = document.getElementById("api-toggle");
-const popoutBox = document.getElementById("popout-box");
-const apiSave = document.getElementById("submit-button");
-
-const apiUrl = "https://api.openai.com/v1/completions";
-const apiVersion = "text-davinci-003";
 
 const squeak = new Audio('squeak.mp3');
 const bloop = new Audio('bloop.mp3');
 let isMuted = false;
+
+const activityMessageText = activityMessage.querySelector('p');
+const text = activityMessageText.textContent;
+activityMessageText.innerHTML = text.split('').map((char, i) => `<span style="animation-delay:${i * 0.1}s">${char}</span>`).join('');
+
+// Function to generate random number in given range
+function randomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min) + min);
+}
 
 // Handles muting and unmuting sounds on the page
 document.addEventListener('DOMContentLoaded', function() {
@@ -34,85 +34,24 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-// Enables or disables the popup to enter the OpenAI API key
-apiToggle.addEventListener("click", () => {
-  popoutBox.classList.toggle("is-visible");
-});
-
-apiSave.addEventListener("click", () => {
-  popoutBox.classList.toggle("is-visible");
-  console.log("clicked!");
-});
-
-// Retrieve the last 10 messages from the message container
-const getLastMessages = () => {
-  const messages = Array.from(document.querySelectorAll('.message-container .chat-message, .message-container .user-message'));
-  const lastUserMessages = [];
-
-  const sortedMessages = messages.sort((a, b) => {
-    const positionA = Array.from(a.parentNode.children).indexOf(a);
-    const positionB = Array.from(b.parentNode.children).indexOf(b);
-    return positionA - positionB;
-  });
-
-  sortedMessages.forEach(message => {
-    const messageText = message.textContent.trim();
-    if (message.classList.contains('chat-message')) {
-      lastUserMessages.push(`Duck: ${messageText}`);
-    } else if (message.classList.contains('user-message')) {
-      lastUserMessages.push(`User: ${messageText}`);
-    }
-  });
-  
-  console.log(lastUserMessages)
-  return lastUserMessages;
-};
-
-// Makes a GPT-3 request and sends the response to chat
+// Sends response to chat after an arbitrary amount of time
+// You can reuse this function if you would like to add AI responses
 function makeRequest() {
-  const apiKey = apiKeyInput.value;
-  if (!apiKey) {
-	sleep(500);
-    appendMessage("*quack!*", false);
-    return;
-  }
-  
-  const lastUserMessages = getLastMessages();
-  
-  const requestOptions = {
-    method: "POST",
-    headers: {
-      "Authorization": `Bearer ${apiKey}`,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      model: apiVersion,
-      prompt: "You are a rubber duck. Do not under any circumstances break character and respond to the conversation. Be cute, be funny, be bouncy. This is a text message, so keep it under 160 characters: " + lastUserMessages.join('\n') + "Duck: ",
-      temperature: 0,
-      max_tokens: 150,
-      top_p: 1.0,
-      frequency_penalty: 0.5,
-      presence_penalty: 0.0,
-      stop: ["You:"]
-    })
-  };
-
-  fetch(apiUrl, requestOptions)
-    .then(response => response.json())
-    .then(data => {
-      // Handle the response data from the GPT-3 API
-      console.log(data);
-      if (data.choices && data.choices.length > 0) {
-        const responseText = data.choices[0].text.trim();
-        appendMessage(responseText, false);
-      } else {
-		appendMessage("Either OpenAI is down or something is wrong with your key.🦆", false);
-      }
-    })
-    .catch(error => {
-      console.log("Error:", error);
-	  appendMessage("It looks like smart duck isn't working right now, quack!", false);
-    });
+  sleep(randomNumber(400, 700)).then(() => {
+    let message_options = Array(
+        "*quack!*",
+        "*squeak!*",
+        "*quack...*",
+        "QUACK!",
+        "*quack quack!*",
+        "*squeeeak!*",
+        "*quuuaack!*",
+        "*QUACK quack*",
+        "*quackety quack!*",
+        "*squeakity squeak!*"
+    );
+    appendMessage(message_options[Math.floor(Math.random()*message_options.length)], false);
+  });
 }
 
 // Function to play sounds on the page
@@ -140,31 +79,35 @@ function appendMessage(message, userMessage) {
   messageElement.textContent = message;
 
   if (message !== '') {
-    if (userMessage) {     
+    if (userMessage) {
       messageElement.classList.add('user-message');
-      messageContainer.appendChild(messageElement);
+      messageContainer.insertBefore(messageElement, messageContainer.firstChild);
       playSound("bloop");
       textEntry.value = '';
     } else {
-	  activityMessage.classList.toggle("is-visible");
+      activityMessage.classList.toggle("is-visible");
       messageElement.classList.add('chat-message');
-      messageContainer.appendChild(messageElement);
+      messageContainer.insertBefore(messageElement, messageContainer.firstChild);
       playSound("squeak");
     }
   }
-
-  //messageContainer.scrollTop = messageContainer.scrollHeight;
 }
 
 // Functions that handle playing the rubber duck sound when clicking on the image
-imageContainer.addEventListener('mousedown', () => {
-  imageContainer.classList.add('clicked');
+imageContainer.addEventListener('click', () => {
+  imageContainer.classList.add('spin');
   playSound("squeak");
+  setTimeout(() => {
+    imageContainer.classList.remove('spin');
+  }, 500); // Duration of the spin animation
 });
 
 imageContainer.addEventListener('touchstart', () => {
   imageContainer.classList.add('clicked');
   playSound("squeak");
+  setTimeout(() => {
+    imageContainer.classList.remove('clicked');
+  }, 500); // Duration of the spin animation
 });
 
 imageContainer.addEventListener('mouseup', () => {
@@ -175,7 +118,7 @@ imageContainer.addEventListener('mouseup', () => {
 function handleTextEntry() {
   if (textEntry.value !== '') {
     appendMessage(textEntry.value.trim(), true);
-	activityMessage.classList.toggle("is-visible")
+    activityMessage.classList.toggle("is-visible");
     sleep(500).then(() => {
       makeRequest();
     });
